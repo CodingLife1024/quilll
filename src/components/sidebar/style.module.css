@@ -1,0 +1,40 @@
+.container {
+    width: fit-content;
+    height: fit-content;
+    background-color: #9CBC57;
+    opacity: 0.5;
+    margin: 10px;
+}
+
+.full {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 10px;
+}
+.drop {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 10px;
+    width: 100%;
+    color: white;
+    font-size: 20px;
+}
+
+.welcome {
+    color: black;
+    margin: 20px;
+    font-size: 25px;
+    font-weight: 700;
+}
+
+option {
+    color: black;
+    margin: 10px;
+    font-size: 20px;
+    font-weight: 600;
+    background-color: #9CBC57;
+}
