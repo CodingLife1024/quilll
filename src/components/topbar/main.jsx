@@ -22,7 +22,6 @@ const Topbar = () => {
                 </div>
                 <div className={styles.right}>
                     <div className={styles.sort}>
-                        {/* <div className={styles.sortby}>Sort By</div> */}
                         <select className={styles.dropdown} defaultValue="category">
                             <option value="category">Option 1</option>
                             <option value="option2">Option 2</option>
