@@ -54,7 +54,7 @@
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    padding: 0 10px; /* Add padding to adjust spacing */
+    padding: 0 10px;
 }
 
 .search {
@@ -72,12 +72,13 @@
 .dropdown {
     background-color: white;
     color: black;
-    border: 1px solid #ccc;
     padding: 8px 12px;
     font-size: 14px;
-    border-radius: 100px;
-    margin-right: 10px;
+    border: none;
+    border-radius: 100px; /* Apply border-radius for rounded appearance */
+    margin-right: 10px; /* Adjust margin if needed */
 }
+
 
 .searchbar {
     padding: 8px;
@@ -91,7 +92,7 @@
 
 .searchbar:focus {
     background: white; /* Set background color on focus */
-    border: none;
+    border: 1px solid white;
 }
 
 .sortby {
@@ -105,8 +106,59 @@
     background-color: #6E7B1D;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 750px) {
+
+    .left img {
+        height: 40px;
+    }
+
     .right {
         flex-direction: column-reverse;
+        height: 100%; /* Ensure .right fills the entire height */
+        justify-content: flex-start;
+        align-items: flex-start;
+    }
+
+    .sort {
+        flex: 1; /* Occupy full width available */
+        padding: 2px 10px; /* Adjust padding for content */
+        margin: 3px 0; /* Adjust margin for spacing */
+        height: 40%;
+        overflow: hidden; /* Hide content if it exceeds max-height */
+    }
+
+    .search {
+        flex: 1; /* Occupy full width available */
+        padding: 2px 10px; /* Adjust padding for content */
+        height: 40%;
+        margin: 3px 0;
+        overflow: hidden; /* Hide content if it exceeds max-height */
+        align-items: left;
+    }
+
+    .search img{
+        height: 20px;
+    }
+
+    .searchbar {
+        padding: 3px;
+        font-size: 12px;
+        border: none;
+        background: white;
+        border-radius: 100px;
+        color: black;
+        width: 100%;
+    }
+
+    .searchbar:focus {
+        background: white; /* Set background color on focus */
+        border: 1px solid white;
+    }
+
+    .sortby {
+        margin-right: 10px;
+        font-size: 14px;
+        color: black;
     }
 }
+
