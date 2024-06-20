@@ -1,9 +1,15 @@
 .container {
-    width: fit-content;
-    height: fit-content;
+    position: fixed;
+    top: 0;
+    left: -300px; /* Off screen initially */
+    width: 300px;
+    height: 100vh;
     background-color: #9CBC57;
-    opacity: 0.5;
-    margin: 10px;
+    transition: left 0.3s ease;
+}
+
+.container.open {
+    left: 0;
 }
 
 .full {
@@ -13,6 +19,7 @@
     justify-content: center;
     margin: 10px;
 }
+
 .drop {
     display: flex;
     flex-direction: column;
@@ -37,4 +44,16 @@ option {
     font-size: 20px;
     font-weight: 600;
     background-color: #9CBC57;
+}
+
+.openButton {
+    position: fixed;
+    top: 10%;
+    left: 0;
+    background-color: #415020;
+    color: white;
+    padding: 5px;
+    border: none;
+    cursor: pointer;
+    z-index: 1000;
 }

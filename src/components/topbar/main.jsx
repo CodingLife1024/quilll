@@ -18,7 +18,7 @@ const Topbar = () => {
             </div>
             <div className={styles.mid}>
                 <div className={styles.left} onClick={toggleSidebar}>
-                    <img src={hamburgerIcon} alt="Hamburger Icon" />
+                    
                 </div>
                 <div className={styles.right}>
                     <div className={styles.sort}>
