@@ -6,6 +6,10 @@
     height: 100vh;
     background-color: #9CBC57;
     transition: left 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Vertically center content */
+    align-items: center; /* Horizontally center content */
 }
 
 .container.open {
