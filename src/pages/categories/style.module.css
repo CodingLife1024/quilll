@@ -20,6 +20,7 @@
 .category {
     height: 300px;
     width: 20%;
+    min-width: 200px;
     margin: 10px;
     border-radius: 10px;
     display: flex;
@@ -28,32 +29,5 @@
     color: white;
     font-weight: bold;
     font-size: 1.5em;
-}
-
-.category:nth-child(1) {
-    background-color: #ff9999;
-}
-
-.category:nth-child(2) {
-    background-color: #ffcc99;
-}
-
-.category:nth-child(3) {
-    background-color: #ffff99;
-}
-
-.category:nth-child(4) {
-    background-color: #ccff99;
-}
-
-.category:nth-child(5) {
-    background-color: #99ff99;
-}
-
-.category:nth-child(6) {
-    background-color: #99ffcc;
-}
-
-.category:nth-child(7) {
-    background-color: #99ffff;
+    background: linear-gradient(to bottom, #9CBC57, #BC5757);
 }
