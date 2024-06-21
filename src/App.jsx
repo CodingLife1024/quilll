@@ -7,8 +7,7 @@ import './App.css';
 function App() {
     return (
         <>
-            <Topbar />
-            <SideBar />
+            <Category />
         </>
     );
 }
