@@ -20,6 +20,8 @@
     justify-content: center;
     flex-wrap: wrap;
     flex-direction: row;
+    align-content: last baseline;
+    overflow: hidden;
 }
 
 .category {
@@ -39,8 +41,8 @@
 }
 
 .category:hover {
-    transform: scale(1.05); /* Scale up slightly on hover */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Add a subtle shadow */
+    transform: scale(1.05);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
 .categoryImage{
