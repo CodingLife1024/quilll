@@ -23,6 +23,97 @@ function BookList() {
                         </div>
                     </div>
 
+                    <div className={styles.book}>
+                        <div className={styles.bookImage}>
+                            <img src="src\pages\booklist\bookcover.svg" alt="book" />
+                        </div>
+                        <div className={styles.bookInfo}>
+                            <div className={styles.bookTitle}>Harry Potter and the Philosopher's Stone</div>
+                            <div className={styles.bookAuthor}>Author: J.K. Rowling</div>
+                            <div className={styles.bookDate}>Release Date: 01-01-1999</div>
+                            <div className={styles.bookUploaded}>Uploaded on: 01-01-2024</div>
+                            <div className={styles.bookTags}>Tags: young adult, fantasy</div>
+                        </div>
+                    </div>
+
+                    <div className={styles.book}>
+                        <div className={styles.bookImage}>
+                            <img src="src\pages\booklist\bookcover.svg" alt="book" />
+                        </div>
+                        <div className={styles.bookInfo}>
+                            <div className={styles.bookTitle}>Harry Potter and the Philosopher's Stone</div>
+                            <div className={styles.bookAuthor}>Author: J.K. Rowling</div>
+                            <div className={styles.bookDate}>Release Date: 01-01-1999</div>
+                            <div className={styles.bookUploaded}>Uploaded on: 01-01-2024</div>
+                            <div className={styles.bookTags}>Tags: young adult, fantasy</div>
+                        </div>
+                    </div>
+
+                    <div className={styles.book}>
+                        <div className={styles.bookImage}>
+                            <img src="src\pages\booklist\bookcover.svg" alt="book" />
+                        </div>
+                        <div className={styles.bookInfo}>
+                            <div className={styles.bookTitle}>Harry Potter and the Philosopher's Stone</div>
+                            <div className={styles.bookAuthor}>Author: J.K. Rowling</div>
+                            <div className={styles.bookDate}>Release Date: 01-01-1999</div>
+                            <div className={styles.bookUploaded}>Uploaded on: 01-01-2024</div>
+                            <div className={styles.bookTags}>Tags: young adult, fantasy</div>
+                        </div>
+                    </div>
+
+                    <div className={styles.book}>
+                        <div className={styles.bookImage}>
+                            <img src="src\pages\booklist\bookcover.svg" alt="book" />
+                        </div>
+                        <div className={styles.bookInfo}>
+                            <div className={styles.bookTitle}>Harry Potter and the Philosopher's Stone</div>
+                            <div className={styles.bookAuthor}>Author: J.K. Rowling</div>
+                            <div className={styles.bookDate}>Release Date: 01-01-1999</div>
+                            <div className={styles.bookUploaded}>Uploaded on: 01-01-2024</div>
+                            <div className={styles.bookTags}>Tags: young adult, fantasy</div>
+                        </div>
+                    </div>
+
+                    <div className={styles.book}>
+                        <div className={styles.bookImage}>
+                            <img src="src\pages\booklist\bookcover.svg" alt="book" />
+                        </div>
+                        <div className={styles.bookInfo}>
+                            <div className={styles.bookTitle}>Harry Potter and the Philosopher's Stone</div>
+                            <div className={styles.bookAuthor}>Author: J.K. Rowling</div>
+                            <div className={styles.bookDate}>Release Date: 01-01-1999</div>
+                            <div className={styles.bookUploaded}>Uploaded on: 01-01-2024</div>
+                            <div className={styles.bookTags}>Tags: young adult, fantasy</div>
+                        </div>
+                    </div>
+
+                    <div className={styles.book}>
+                        <div className={styles.bookImage}>
+                            <img src="src\pages\booklist\bookcover.svg" alt="book" />
+                        </div>
+                        <div className={styles.bookInfo}>
+                            <div className={styles.bookTitle}>Harry Potter and the Philosopher's Stone</div>
+                            <div className={styles.bookAuthor}>Author: J.K. Rowling</div>
+                            <div className={styles.bookDate}>Release Date: 01-01-1999</div>
+                            <div className={styles.bookUploaded}>Uploaded on: 01-01-2024</div>
+                            <div className={styles.bookTags}>Tags: young adult, fantasy</div>
+                        </div>
+                    </div>
+
+                    <div className={styles.book}>
+                        <div className={styles.bookImage}>
+                            <img src="src\pages\booklist\bookcover.svg" alt="book" />
+                        </div>
+                        <div className={styles.bookInfo}>
+                            <div className={styles.bookTitle}>Harry Potter and the Philosopher's Stone</div>
+                            <div className={styles.bookAuthor}>Author: J.K. Rowling</div>
+                            <div className={styles.bookDate}>Release Date: 01-01-1999</div>
+                            <div className={styles.bookUploaded}>Uploaded on: 01-01-2024</div>
+                            <div className={styles.bookTags}>Tags: young adult, fantasy</div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </>

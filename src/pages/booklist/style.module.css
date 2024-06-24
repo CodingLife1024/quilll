@@ -1,5 +1,5 @@
 .container {
-    background-image: url("./bg.svg");
+    background-image: url(".\bg.svg");
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
@@ -57,13 +57,14 @@
 
 .bookInfo {
     display: flex;
+    margin: 3px;
     flex-direction: column;
     align-items: flex-start;
     justify-content: center;
 }
 
 .bookTitle {
-    margin-top: 5px;
+    margin-top: 2px;
     color: black;
     font-size: 0.9em;
     font-weight: 500;
@@ -71,10 +72,10 @@
 }
 
 .bookAuthor, .bookDate, .bookUploaded, .bookTags  {
-    margin-top: 5px;
+    margin-top: 2px;
     color: black;
     font-size: 0.8em;
-    font-weight: 500;
+    font-weight: 400;
     text-align: left;
 }
 
@@ -87,6 +88,34 @@
     .book {
         width: 30%;
         flex-direction: row;
+        min-width: 300px;
+    }
+
+    .bookImage{
+        height: 150px;
+        width: 150px;
+        padding: 5px;
+    }
+
+    .bookImage img {
+        height: 100%;
+        width: 100%;
+    }
+
+    .bookTitle {
+        margin-top: 2px;
+        color: black;
+        font-size: 0.8em;
+        font-weight: 500;
+        text-align: center;
+    }
+
+    .bookAuthor, .bookDate, .bookUploaded, .bookTags  {
+        margin-top: 2px;
+        color: black;
+        font-size: 0.6em;
+        font-weight: 400;
+        text-align: left;
     }
 }
 
@@ -98,5 +127,33 @@
     .book {
         width: 80%;
         flex-direction: row;
+        min-width: 250px;
+    }
+
+    .bookImage{
+        height: 150px;
+        width: 150px;
+        padding: 5px;
+    }
+
+    .bookImage img {
+        height: 100%;
+        width: 100%;
+    }
+
+    .bookTitle {
+        margin-top: 2px;
+        color: black;
+        font-size: 0.7em;
+        font-weight: 500;
+        text-align: center;
+    }
+
+    .bookAuthor, .bookDate, .bookUploaded, .bookTags  {
+        margin-top: 2px;
+        color: black;
+        font-size: 0.6em;
+        font-weight: 400;
+        text-align: left;
     }
 }
