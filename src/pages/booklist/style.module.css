@@ -86,6 +86,7 @@
 
     .book {
         width: 30%;
+        flex-direction: row;
     }
 }
 
@@ -96,5 +97,6 @@
 
     .book {
         width: 80%;
+        flex-direction: row;
     }
 }
