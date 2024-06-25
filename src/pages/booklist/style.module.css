@@ -28,7 +28,6 @@
     width: 15%;
     max-width: 100%;
     min-width: 120px;
-    margin: 10px;
     border-radius: 10px;
     display: flex;
     align-items: center;
@@ -36,12 +35,14 @@
     background: linear-gradient(to bottom, #9CBC57, #BC5757);
     flex-direction: column;
     padding: 10px;
+    margin: 10px;
     transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
 }
 
 .book:hover {
     transform: scale(1.05);
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
 }
 
 .bookImage{
