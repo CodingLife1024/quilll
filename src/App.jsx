@@ -1,4 +1,5 @@
 import React from 'react';
+import { Helmet } from 'react-helmet';
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import Category from './pages/categories/main'; // Importing Category component
 import BookList from './pages/booklist/main';
@@ -9,6 +10,9 @@ import './App.css';
 function App() {
     return (
         <Router>
+            <Helmet>
+                <title>Home</title>
+            </Helmet>
             <div>
                 <Topbar />
                 <SideBar />
