@@ -3,6 +3,7 @@ import { Helmet } from 'react-helmet';
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import Category from './pages/categories/main'; // Importing Category component
 import BookList from './pages/booklist/main';
+import Book from './pages/book/main';
 import Topbar from './components/topbar/main';
 import SideBar from './components/sidebar/main';
 import './App.css';
@@ -17,8 +18,9 @@ function App() {
                 <Topbar />
                 <SideBar />
                 <Routes>
-                    <Route path="/" element={<Category />} />
+                    <Route path="/" element={<Book />} />
                     <Route path="/booklist" element={<BookList />} />
+                    <Route path="/category" element={<Category />} />
                 </Routes>
             </div>
         </Router>
