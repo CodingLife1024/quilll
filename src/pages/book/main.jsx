@@ -15,10 +15,13 @@ function Book() {
             <div className={styles.container}>
                 <div className={styles.main}>
                     <div className={styles.book}>
-                    
+
                         <div className={styles.cover-and-desc}>
                             <div className={styles.cover}>
                                 <img src="src\pages\booklist\bookcover.svg" alt="book" />
+                            </div>
+                            <div className={styles.desc}>
+                                
                             </div>
                         </div>
 
