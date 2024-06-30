@@ -138,7 +138,7 @@
         padding-bottom: 50px;
     }
 
-    .book {
+    .book { 
         width: 30%;
         flex-direction: row;
         min-width: 300px;
