@@ -30,6 +30,10 @@
     background: linear-gradient(to bottom, #9CBC57, #BC5757);
 }
 
+.authorImg {
+    padding: 5px;
+}
+
 .authorImg img {
     height: 150px;
     width: 150px;
@@ -138,7 +142,7 @@
         padding-bottom: 50px;
     }
 
-    .book { 
+    .book {
         width: 30%;
         flex-direction: row;
         min-width: 300px;
@@ -175,6 +179,11 @@
 @media (max-width: 450px) {
     .container {
         padding-top: 150px;
+    }
+
+    .author {
+        flex-direction: column;
+        width: 80%;
     }
 
     .book {

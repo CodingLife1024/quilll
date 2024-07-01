@@ -10,6 +10,7 @@
     flex-direction: column;
     justify-content: center; /* Vertically center content */
     align-items: center; /* Horizontally center content */
+    z-index: 999;
 }
 
 .container.open {

@@ -3,6 +3,7 @@ import { Helmet } from 'react-helmet';
 import Topbar from '../../components/topbar/main';
 import Sidebar from '../../components/sidebar/main';
 import styles from './style.module.css';
+import BookList from '../booklist/main';
 
 function Author() {
     return (
@@ -148,7 +149,7 @@ function Author() {
                             <div className={styles.bookTags}>Tags: young adult, fantasy</div>
                         </div>
                     </div>
-                    
+
                 </div>
             </div>
         </>
