@@ -47,13 +47,16 @@
 .categoryImage{
     height: 100px;
     width: 100px;
-    padding: 5px;
+    margin: 5px;
+    border-radius: 50%;
+    border: 5px solid black;
 }
 
 .categoryImage img {
     height: 100%;
     width: 100%;
     border-radius: 50%;
+    object-fit: cover;
 }
 
 .categoryTitle {
