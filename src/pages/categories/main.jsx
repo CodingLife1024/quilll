@@ -17,7 +17,7 @@ function Category() {
         { name: 'Short Stories', image: 'shortstories.jpeg', category: 'shortstories' },
         { name: 'Historical', image: 'historical.jpeg', category: 'historical' },
         { name: 'Drama', image: 'drama.jpeg', category: 'drama' },
-        { name: 'Graphic Novels', image: 'graphicnovels.jpeg', category: 'graphicnovels' },
+        { name: 'Graphic Novels', image: 'graphicnovels.jpeg', category: 'graphicnovel' },
         { name: 'Essays', image: 'essays.jpeg', category: 'essays' }
     ];
 
