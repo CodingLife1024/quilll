@@ -6,7 +6,7 @@ import BookList from './pages/booklist/main';
 import Book from './pages/book/main';
 import Author from './pages/author/main';
 import Topbar from './components/topbar/main';
-import SideBar from './components/sidebar/main'; 
+import SideBar from './components/sidebar/main';
 import './App.css';
 
 function App() {
@@ -19,7 +19,7 @@ function App() {
                 <Topbar />
                 <SideBar />
                 <Routes>
-                    <Route path="/" element={<Author />} />
+                    <Route path="/" element={<Category />} /> 
                     <Route path="/booklist" element={<BookList />} />
                     <Route path="/book" element={<Book />} />
                     <Route path="/category" element={<Category />} />
