@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 import { Helmet } from 'react-helmet';
 import { Link } from 'react-router-dom';
 import Topbar from '../../components/topbar/main';
@@ -6,6 +7,7 @@ import Sidebar from '../../components/sidebar/main';
 import styles from './style.module.css';
 
 function Category() {
+    const [categoryCounts, setCategoryCounts] = useState({});
     const categories = [
         { name: 'Poetry', image: 'poetry.jpeg', category: 'poetry' },
         { name: 'Romance', image: 'romance.jpeg', category: 'romance' },
@@ -18,6 +20,23 @@ function Category() {
         { name: 'Graphic Novels', image: 'graphicnovels.jpeg', category: 'graphicnovels' },
         { name: 'Essays', image: 'essays.jpeg', category: 'essays' }
     ];
+
+    useEffect(() => {
+        const fetchCategoryCounts = async () => {
+            const counts = {};
+            for (const category of categories) {
+                try {
+                    const response = await axios.get(`/api/books?category=${category.category}`);
+                    counts[category.category] = response.data.length;
+                } catch (error) {
+                    console.error(`Error fetching data for category ${category.category}:`, error);
+                }
+            }
+            setCategoryCounts(counts);
+        };
+
+        fetchCategoryCounts();
+    }, [categories]);
 
     return (
         <>
@@ -41,7 +60,11 @@ function Category() {
                                 />
                             </div>
                             <div className={styles.categoryTitle}>{category.name}</div>
-                            <div className={styles.categoryNumber}>564 Items</div>
+                            <div className={styles.categoryNumber}>
+                                {categoryCounts[category.category] !== undefined
+                                    ? `${categoryCounts[category.category]} Items`
+                                    : 'Loading...'}
+                            </div>
                         </Link>
                     ))}
                 </div>
