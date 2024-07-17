@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet';
-import { useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import Sidebar from '../../components/sidebar/main';
 import Topbar from '../../components/topbar/main';
 import styles from './style.module.css';
@@ -61,7 +61,7 @@ function BookList() {
             <div className={styles.container}>
                 <div className={styles.main}>
                     {books.map((book, index) => (
-                        <div key={index} className={styles.book}>
+                        <Link key={index} className={styles.book}>
                             <div className={styles.bookImage}>
                                 <img
                                     src={book.book_image ? book.book_image : defaultImage}
@@ -78,7 +78,7 @@ function BookList() {
                                     Tags: {Array.isArray(book.tags) ? book.tags.join(', ') : book.tags}
                                 </div>
                             </div>
-                        </div>
+                        </Link>
                     ))}
                 </div>
             </div>
