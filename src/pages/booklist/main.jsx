@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
 import axios from 'axios';
+import React, { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet';
-import Topbar from '../../components/topbar/main';
+import { useParams } from 'react-router-dom';
 import Sidebar from '../../components/sidebar/main';
+import Topbar from '../../components/topbar/main';
 import styles from './style.module.css';
 
 function BookList() {
@@ -38,7 +38,7 @@ function BookList() {
     return (
         <>
             <Helmet>
-                <title>{`${category.charAt(0).toUpperCase() + category.slice(1)} Books`}</title>
+                <title>{`${category.charAt(0).toUpperCase() + category.slice(1)}`}</title>
             </Helmet>
             <Topbar />
             <Sidebar />
@@ -47,7 +47,7 @@ function BookList() {
                     {books.map((book, index) => (
                         <div key={index} className={styles.book}>
                             <div className={styles.bookImage}>
-                                <img src=".\bookcover.svg" alt="book" />
+                                <img src="/bookcover.svg" alt={category.author_id} />
                             </div>
                             <div className={styles.bookInfo}>
                                 <div className={styles.bookTitle}>{book.title}</div>
