@@ -10,6 +10,17 @@ function useQuery() {
     return new URLSearchParams(useLocation().search);
 }
 
+const defaultImage = "/bookcover.svg";
+
+function checkImage(url) {
+    return new Promise((resolve) => {
+        const img = new Image();
+        img.onload = () => resolve(true);
+        img.onerror = () => resolve(false);
+        img.src = url;
+    });
+}
+
 function BookList() {
     const query = useQuery();
     const category = query.get('category');
@@ -52,15 +63,19 @@ function BookList() {
                     {books.map((book, index) => (
                         <div key={index} className={styles.book}>
                             <div className={styles.bookImage}>
-                                <img src="/bookcover.svg" alt={category.author_id} />
+                                <img
+                                    src={book.book_image ? book.book_image : defaultImage}
+                                    onError={(e) => { e.target.onerror = null; e.target.src = defaultImage; }}
+                                    alt={book.author_id}
+                                />
                             </div>
                             <div className={styles.bookInfo}>
-                                <div className={styles.bookTitle}>{book.title}</div>
+                                <div className={styles.bookTitle}>{book.book_name}</div>
                                 <div className={styles.bookAuthor}>Author: {book.author_id}</div>
-                                <div className={styles.bookDate}>Release Date: {book.release_date}</div>
-                                <div className={styles.bookUploaded}>Uploaded on: {book.upload_date}</div>
+                                <div className={styles.bookDate}>Release Date: {new Date(book.release_date).toLocaleDateString()}</div>
+                                <div className={styles.bookUploaded}>Uploaded on: {new Date(book.upload_date).toLocaleDateString()}</div>
                                 <div className={styles.bookTags}>
-                                    Tags: {Array.isArray(book.tags) ? book.tags.join(', ') : 'No tags'}
+                                    Tags: {Array.isArray(book.tags) ? book.tags.join(', ') : book.tags}
                                 </div>
                             </div>
                         </div>
