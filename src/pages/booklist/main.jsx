@@ -47,7 +47,7 @@ function BookList() {
                     {books.map((book, index) => (
                         <div key={index} className={styles.book}>
                             <div className={styles.bookImage}>
-                                <img src="src/pages/booklist/bg.svg" alt="book" />
+                                <img src=".\bookcover.svg" alt="book" />
                             </div>
                             <div className={styles.bookInfo}>
                                 <div className={styles.bookTitle}>{book.title}</div>
