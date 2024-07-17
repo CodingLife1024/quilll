@@ -20,7 +20,7 @@ function App() {
                 <SideBar />
                 <Routes>
                     <Route path="/" element={<Category />} />
-                    <Route path="/books/:category" element={<BookList />} />
+                    <Route path="/books" element={<BookList />} />
                     <Route path="/book" element={<Book />} />
                     <Route path="/category" element={<Category />} />
                 </Routes>

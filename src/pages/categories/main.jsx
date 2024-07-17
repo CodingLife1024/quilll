@@ -50,7 +50,7 @@ function Category() {
                     {categories.map((category, index) => (
                         <Link
                             key={index}
-                            to={`/books/${category.category}`}
+                            to={`/books?category=${category.category}`}
                             className={styles.category}
                         >
                             <div className={styles.categoryImage}>
