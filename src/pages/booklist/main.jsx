@@ -15,7 +15,7 @@ function BookList() {
     useEffect(() => {
         const fetchBooks = async () => {
             try {
-                const response = await axios.get(`https://quilll-backend-api.vercel.app/books?category=${category}`);
+                const response = await axios.get(`/api/books?category=${category}`);
                 setBooks(response.data);
                 setLoading(false);
             } catch (err) {
@@ -38,7 +38,7 @@ function BookList() {
     return (
         <>
             <Helmet>
-                <title>Book List</title>
+                <title>{`${category.charAt(0).toUpperCase() + category.slice(1)} Books`}</title>
             </Helmet>
             <Topbar />
             <Sidebar />
@@ -47,14 +47,16 @@ function BookList() {
                     {books.map((book, index) => (
                         <div key={index} className={styles.book}>
                             <div className={styles.bookImage}>
-                                <img src="src/pages/booklist/bookcover.svg" alt="book" />
+                                <img src="src/pages/booklist/bg.svg" alt="book" />
                             </div>
                             <div className={styles.bookInfo}>
                                 <div className={styles.bookTitle}>{book.title}</div>
-                                <div className={styles.bookAuthor}>Author: {book.author}</div>
+                                <div className={styles.bookAuthor}>Author: {book.author_id}</div>
                                 <div className={styles.bookDate}>Release Date: {book.release_date}</div>
                                 <div className={styles.bookUploaded}>Uploaded on: {book.upload_date}</div>
-                                <div className={styles.bookTags}>Tags: {book.tags.join(', ')}</div>
+                                <div className={styles.bookTags}>
+                                    Tags: {Array.isArray(book.tags) ? book.tags.join(', ') : 'No tags'}
+                                </div>
                             </div>
                         </div>
                     ))}
