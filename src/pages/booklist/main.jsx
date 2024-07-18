@@ -18,7 +18,7 @@ function checkImage(url) {
         img.onload = () => resolve(true);
         img.onerror = () => resolve(false);
         img.src = url;
-    });
+    }); 
 }
 
 function BookList() {
@@ -63,7 +63,7 @@ function BookList() {
                     {books.map((book, index) => (
                         <Link key={index} className={styles.book}>
                             <div className={styles.bookImage}>
-                                <img 
+                                <img
                                     src={book.book_image ? book.book_image : defaultImage}
                                     onError={(e) => { e.target.onerror = null; e.target.src = defaultImage; }}
                                     alt={book.author_id}
