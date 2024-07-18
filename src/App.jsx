@@ -1,6 +1,6 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
-import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Category from './pages/categories/main'; // Importing Category component
 import BookList from './pages/booklist/main';
 import Book from './pages/book/main';
@@ -21,8 +21,7 @@ function App() {
                 <Routes>
                     <Route path="/" element={<Category />} />
                     <Route path="/books" element={<BookList />} />
-                    <Route path="/book" element={<Book />} />
-                    <Route path="/category" element={<Category />} />
+                    <Route path="/books/search" element={<Book />} />
                 </Routes>
             </div>
         </Router>
