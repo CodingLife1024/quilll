@@ -59,7 +59,7 @@ function BookList() {
                         >
                             <div className={styles.bookImage}>
                                 <img
-                                    src={book.book_image ? book.book_image : defaultImage}
+                                    src={book.book_image || defaultImage}
                                     onError={(e) => { e.target.onerror = null; e.target.src = defaultImage; }}
                                     alt={book.book_name}
                                 />
