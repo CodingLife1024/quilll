@@ -1,17 +1,56 @@
-import React from 'react';
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet';
+import { useLocation } from 'react-router-dom';
 import Topbar from '../../components/topbar/main';
 import Sidebar from '../../components/sidebar/main';
 import styles from './style.module.css';
 
-const defaultBookCover = "/bookcover.svg";
-const defaultAuthor = "/author.svg";
+function useQuery() {
+    return new URLSearchParams(useLocation().search);
+}
+
+const defaultImage = "/bookcover.svg";
 
 function Book() {
+    const query = useQuery();
+    const bookName = query.get('name');
+    const [book, setBook] = useState(null);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+
+    useEffect(() => {
+        const fetchBook = async () => {
+            try {
+                const response = await axios.get(`/api/books?name=${encodeURIComponent(bookName)}`);
+                const books = response.data;
+                setBook(Array.isArray(books) ? books[0] : books); // Set the first book if multiple are returned
+                setLoading(false);
+            } catch (err) {
+                setError(err);
+                setLoading(false);
+            }
+        };
+
+        fetchBook();
+    }, [bookName]);
+
+    if (loading) {
+        return <div>Loading...</div>;
+    }
+
+    if (error) {
+        return <div>Error: {error.message}</div>;
+    }
+
+    if (!book) {
+        return <div>No book found.</div>;
+    }
+
     return (
         <>
             <Helmet>
-                <title>Book</title>
+                <title>{book.book_name}</title>
             </Helmet>
             <Topbar />
             <Sidebar />
@@ -21,39 +60,33 @@ function Book() {
 
                         <div className={styles.coverdesc}>
                             <div className={styles.cover}>
-                                <img src={styles.book_image ? styles.book_image : defaultBookCover}
-                                    onError={(e) => { e.target.onerror = null; e.target.src = defaultBookCover; }}
-                                    alt={styles.book_name}
-                                />
+                                <img src={book.book_image ? book.book_image : defaultImage} alt="book" />
                             </div>
                             <div className={styles.desc}>
-                                The story begins with a young orphan named Harry Potter, who leads a miserable life with his cruel aunt, uncle, and cousin. Little does he know that he is not just an ordinary boy; he is a wizard, and his destiny is intertwined with the magical realm. When Harry receives a letter of acceptance to Hogwarts School of Witchcraft and Wizardry, his life takes an exhilarating turn.
+                                {book.description}
                             </div>
                         </div>
 
                         <div className={styles.bookInfo}>
-                            <div className={styles.bookTitle}>Harry Potter and the Philosopher's Stone</div>
-                            <div className={styles.bookDate}>Release Date: 01-01-1999</div>
-                            <div className={styles.bookUploaded}>Uploaded on: 01-01-2024</div>
-                            <div className={styles.bookTags}>Tags: young adult, fantasy</div>
-                            <div className={styles.bookLink}>amazon</div>
+                            <div className={styles.bookTitle}>{book.book_name}</div>
+                            <div className={styles.bookDate}>Release Date: {new Date(book.release_date).toLocaleDateString()}</div>
+                            <div className={styles.bookUploaded}>Uploaded on: {new Date(book.upload_date).toLocaleDateString()}</div>
+                            <div className={styles.bookTags}>Tags: {Array.isArray(book.tags) ? book.tags.join(', ') : book.tags}</div>
+                            <div className={styles.bookLink}><a href={book.link} target="_blank" rel="noopener noreferrer">amazon</a></div>
                         </div>
                     </div>
 
                     <div className={styles.author}>
                         <div className={styles.nameImg}>
                             <div className={styles.authorImg}>
-                            <img src={styles.book_image ? styles.book_image : defaultAuthor}
-                                onError={(e) => { e.target.onerror = null; e.target.src = defaultAuthor; }}
-                                alt={styles.book_name}
-                            />
+                                <img src="src\pages\book\author.svg" alt="author" />
                             </div>
                             <div className={styles.authorName}>
-                                J.K. Rowling
+                                {book.author_name}
                             </div>
                         </div>
                         <div className={styles.authorAbout}>
-                            The seven-book series, chronicling the adventures of a young wizard, Harry Potter, and his friends at Hogwarts School of Witchcraft and Wizardry, became a cultural phenomenon. The books have been translated into over 80 languages, sold more than 500 million copies worldwide, and spawned a successful film franchise, making Rowling one of the best-selling authors in history.
+                            {book.author_bio}
                         </div>
                     </div>
                 </div>
