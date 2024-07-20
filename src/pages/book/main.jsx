@@ -4,6 +4,9 @@ import Topbar from '../../components/topbar/main';
 import Sidebar from '../../components/sidebar/main';
 import styles from './style.module.css';
 
+const defaultBookCover = "/bookcover.svg";
+const defaultAuthor = "/author.svg";
+
 function Book() {
     return (
         <>
@@ -18,7 +21,10 @@ function Book() {
 
                         <div className={styles.coverdesc}>
                             <div className={styles.cover}>
-                                <img src="src\pages\book\bookcover.svg" alt="book" />
+                                <img src={styles.book_image ? styles.book_image : defaultBookCover}
+                                    onError={(e) => { e.target.onerror = null; e.target.src = defaultBookCover; }}
+                                    alt={styles.book_name}
+                                />
                             </div>
                             <div className={styles.desc}>
                                 The story begins with a young orphan named Harry Potter, who leads a miserable life with his cruel aunt, uncle, and cousin. Little does he know that he is not just an ordinary boy; he is a wizard, and his destiny is intertwined with the magical realm. When Harry receives a letter of acceptance to Hogwarts School of Witchcraft and Wizardry, his life takes an exhilarating turn.
@@ -37,7 +43,10 @@ function Book() {
                     <div className={styles.author}>
                         <div className={styles.nameImg}>
                             <div className={styles.authorImg}>
-                                <img src="src\pages\book\author.svg" alt="author" />
+                            <img src={styles.book_image ? styles.book_image : defaultAuthor}
+                                onError={(e) => { e.target.onerror = null; e.target.src = defaultAuthor; }}
+                                alt={styles.book_name}
+                            />
                             </div>
                             <div className={styles.authorName}>
                                 J.K. Rowling
