@@ -12,15 +12,6 @@ function useQuery() {
 
 const defaultImage = "/bookcover.svg";
 
-function checkImage(url) {
-    return new Promise((resolve) => {
-        const img = new Image();
-        img.onload = () => resolve(true);
-        img.onerror = () => resolve(false);
-        img.src = url;
-    }); 
-}
-
 function BookList() {
     const query = useQuery();
     const category = query.get('category');
@@ -61,12 +52,16 @@ function BookList() {
             <div className={styles.container}>
                 <div className={styles.main}>
                     {books.map((book, index) => (
-                        <Link key={index} className={styles.book}>
+                        <Link
+                            key={index}
+                            to={`/books/search?name=${encodeURIComponent(book.book_name)}`}
+                            className={styles.book}
+                        >
                             <div className={styles.bookImage}>
                                 <img
                                     src={book.book_image ? book.book_image : defaultImage}
                                     onError={(e) => { e.target.onerror = null; e.target.src = defaultImage; }}
-                                    alt={book.author_id}
+                                    alt={book.book_name}
                                 />
                             </div>
                             <div className={styles.bookInfo}>
