@@ -8,7 +8,7 @@ import styles from './style.module.css';
 
 function useQuery() {
     return new URLSearchParams(useLocation().search);
-} 
+}
 
 const defaultImage = "/bookcover.svg";
 const defaultAuthorImage = "/author.svg";
