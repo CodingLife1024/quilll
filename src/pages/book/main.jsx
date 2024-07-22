@@ -37,7 +37,7 @@ function Book() {
                 setBook(bookData);
 
                 if (bookData && bookData.author_name) {
-                    const authorResponse = await axios.get(`/api/authors?name=${encodeURIComponent(bookData.author_name)}`);
+                    const authorResponse = await axios.get(`/api/authors/search?name=${encodeURIComponent(bookData.author_name)}`);
                     setAuthor(authorResponse.data);
                 }
 
@@ -108,13 +108,13 @@ function Book() {
                                 />
                             </div>
                             <div className={styles.authorName}>
-                                <Link to={`/authors?id=${encodeURIComponent(book.author_id)}`}>
-                                    {author ? author.id : book.author_id}
+                                <Link to={`/authors/search?author_name=${encodeURIComponent(book.author_id)}`}>
+                                    {author ? author.author_name : book.author_name}
                                 </Link>
                             </div>
                         </div>
                         <div className={styles.authorAbout}>
-                            {author ? author.desc : book.author_desc}
+                            {author ? author.author_desc : book.author_desc}
                         </div>
                     </div>
                 </div>
