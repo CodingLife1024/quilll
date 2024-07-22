@@ -1,22 +1,77 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet';
+import { useLocation } from 'react-router-dom';
+import axios from 'axios';
 import Topbar from '../../components/topbar/main';
 import Sidebar from '../../components/sidebar/main';
 import styles from './style.module.css';
-import BookList from '../booklist/main';
 
 function useQuery() {
     return new URLSearchParams(useLocation().search);
 }
 
-const defaultImage = "/bookcover.svg";
 const defaultAuthorImage = "/author.svg";
+const defaultBookImage = "/bookcover.svg";
 
 function Author() {
+    const query = useQuery();
+    const authorName = query.get('name');
+    const [author, setAuthor] = useState(null);
+    const [books, setBooks] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+
+    useEffect(() => {
+        const fetchAuthorDetails = async () => {
+            try {
+                setLoading(true);
+                setError(null);
+
+                // Fetch author details
+                const authorResponse = await axios.get(`/api/authors/search?name=${encodeURIComponent(authorName)}`, {
+                    headers: {
+                        'Cache-Control': 'no-cache',
+                    }
+                });
+                const fetchedAuthor = authorResponse.data;
+
+                // Fetch books by author
+                const booksResponse = await axios.get(`/api/books?author_name=${fetchedAuthor.author_name}`, {
+                    headers: {
+                        'Cache-Control': 'no-cache',
+                    }
+                });
+                const fetchedBooks = booksResponse.data;
+
+                setAuthor(fetchedAuthor);
+                setBooks(fetchedBooks);
+                setLoading(false);
+            } catch (error) {
+                console.error('API error:', error);
+                setError(error);
+                setLoading(false);
+            }
+        };
+
+        fetchAuthorDetails();
+    }, [authorName]);
+
+    if (loading) {
+        return <div>Loading...</div>;
+    }
+
+    if (error) {
+        return <div>Error: {error.message}</div>;
+    }
+
+    if (!author) {
+        return <div>No author found.</div>;
+    }
+
     return (
         <>
             <Helmet>
-                <title>Author</title>
+                <title>{author.author_name}</title>
             </Helmet>
             <Topbar />
             <Sidebar />
@@ -24,139 +79,39 @@ function Author() {
                 <div className={styles.author}>
                     <div className={styles.nameImg}>
                         <div className={styles.authorImg}>
-                            <img src="src\pages\book\author.svg" alt="author" />
+                            <img src={author.author_image || defaultAuthorImage} alt="Author" />
                         </div>
                         <div className={styles.authorName}>
-                            J.K. Rowling
+                            {author.author_name}
                         </div>
                     </div>
                     <div className={styles.authorAbout}>
-                        The seven-book series, chronicling the adventures of a young wizard, Harry Potter, and his friends at Hogwarts School of Witchcraft and Wizardry, became a cultural phenomenon. The books have been translated into over 80 languages, sold more than 500 million copies worldwide, and spawned a successful film franchise, making Rowling one of the best-selling authors in history.
+                        {author.author_desc}
                     </div>
                 </div>
 
                 <div className={styles.booksByAuthor}>
-                    Books By author
+                    Books By {author.author_name}
                 </div>
 
                 <div className={styles.booklist}>
-                    <div className={styles.book}>
-                        <div className={styles.bookImage}>
-                            <img src="src\pages\booklist\bookcover.svg" alt="book" />
+                    {books.map(book => (
+                        <div key={book._id} className={styles.book}>
+                            <div className={styles.bookImage}>
+                                <img src={book.book_image || defaultBookImage} alt="Book" />
+                            </div>
+                            <div className={styles.bookInfo}>
+                                <div className={styles.bookTitle}>{book.book_name}</div>
+                                <div className={styles.bookAuthor}>Author: {author.author_name}</div>
+                                <div className={styles.bookDate}>Release Date: {new Date(book.release_date).toLocaleDateString()}</div>
+                                <div className={styles.bookUploaded}>Uploaded on: {new Date(book.upload_date).toLocaleDateString()}</div>
+                                {book.tags && (
+                                    <div className={styles.bookTags}>Tags: {book.tags.join(', ')}</div>
+                                )}
+                                <div className={styles.bookDesc}>{book.book_desc}</div>
+                            </div>
                         </div>
-                        <div className={styles.bookInfo}>
-                            <div className={styles.bookTitle}>Harry Potter and the Philosopher's Stone</div>
-                            <div className={styles.bookAuthor}>Author: J.K. Rowling</div>
-                            <div className={styles.bookDate}>Release Date: 01-01-1999</div>
-                            <div className={styles.bookUploaded}>Uploaded on: 01-01-2024</div>
-                            <div className={styles.bookTags}>Tags: young adult, fantasy</div>
-                        </div>
-                    </div>
-
-                    <div className={styles.book}>
-                        <div className={styles.bookImage}>
-                            <img src="src\pages\booklist\bookcover.svg" alt="book" />
-                        </div>
-                        <div className={styles.bookInfo}>
-                            <div className={styles.bookTitle}>Harry Potter and the Philosopher's Stone</div>
-                            <div className={styles.bookAuthor}>Author: J.K. Rowling</div>
-                            <div className={styles.bookDate}>Release Date: 01-01-1999</div>
-                            <div className={styles.bookUploaded}>Uploaded on: 01-01-2024</div>
-                            <div className={styles.bookTags}>Tags: young adult, fantasy</div>
-                        </div>
-                    </div>
-
-                    <div className={styles.book}>
-                        <div className={styles.bookImage}>
-                            <img src="src\pages\booklist\bookcover.svg" alt="book" />
-                        </div>
-                        <div className={styles.bookInfo}>
-                            <div className={styles.bookTitle}>Harry Potter and the Philosopher's Stone</div>
-                            <div className={styles.bookAuthor}>Author: J.K. Rowling</div>
-                            <div className={styles.bookDate}>Release Date: 01-01-1999</div>
-                            <div className={styles.bookUploaded}>Uploaded on: 01-01-2024</div>
-                            <div className={styles.bookTags}>Tags: young adult, fantasy</div>
-                        </div>
-                    </div>
-
-                    <div className={styles.book}>
-                        <div className={styles.bookImage}>
-                            <img src="src\pages\booklist\bookcover.svg" alt="book" />
-                        </div>
-                        <div className={styles.bookInfo}>
-                            <div className={styles.bookTitle}>Harry Potter and the Philosopher's Stone</div>
-                            <div className={styles.bookAuthor}>Author: J.K. Rowling</div>
-                            <div className={styles.bookDate}>Release Date: 01-01-1999</div>
-                            <div className={styles.bookUploaded}>Uploaded on: 01-01-2024</div>
-                            <div className={styles.bookTags}>Tags: young adult, fantasy</div>
-                        </div>
-                    </div>
-
-                    <div className={styles.book}>
-                        <div className={styles.bookImage}>
-                            <img src="src\pages\booklist\bookcover.svg" alt="book" />
-                        </div>
-                        <div className={styles.bookInfo}>
-                            <div className={styles.bookTitle}>Harry Potter and the Philosopher's Stone</div>
-                            <div className={styles.bookAuthor}>Author: J.K. Rowling</div>
-                            <div className={styles.bookDate}>Release Date: 01-01-1999</div>
-                            <div className={styles.bookUploaded}>Uploaded on: 01-01-2024</div>
-                            <div className={styles.bookTags}>Tags: young adult, fantasy</div>
-                        </div>
-                    </div>
-
-                    <div className={styles.book}>
-                        <div className={styles.bookImage}>
-                            <img src="src\pages\booklist\bookcover.svg" alt="book" />
-                        </div>
-                        <div className={styles.bookInfo}>
-                            <div className={styles.bookTitle}>Harry Potter and the Philosopher's Stone</div>
-                            <div className={styles.bookAuthor}>Author: J.K. Rowling</div>
-                            <div className={styles.bookDate}>Release Date: 01-01-1999</div>
-                            <div className={styles.bookUploaded}>Uploaded on: 01-01-2024</div>
-                            <div className={styles.bookTags}>Tags: young adult, fantasy</div>
-                        </div>
-                    </div>
-
-                    <div className={styles.book}>
-                        <div className={styles.bookImage}>
-                            <img src="src\pages\booklist\bookcover.svg" alt="book" />
-                        </div>
-                        <div className={styles.bookInfo}>
-                            <div className={styles.bookTitle}>Harry Potter and the Philosopher's Stone</div>
-                            <div className={styles.bookAuthor}>Author: J.K. Rowling</div>
-                            <div className={styles.bookDate}>Release Date: 01-01-1999</div>
-                            <div className={styles.bookUploaded}>Uploaded on: 01-01-2024</div>
-                            <div className={styles.bookTags}>Tags: young adult, fantasy</div>
-                        </div>
-                    </div>
-
-                    <div className={styles.book}>
-                        <div className={styles.bookImage}>
-                            <img src="src\pages\booklist\bookcover.svg" alt="book" />
-                        </div>
-                        <div className={styles.bookInfo}>
-                            <div className={styles.bookTitle}>Harry Potter and the Philosopher's Stone</div>
-                            <div className={styles.bookAuthor}>Author: J.K. Rowling</div>
-                            <div className={styles.bookDate}>Release Date: 01-01-1999</div>
-                            <div className={styles.bookUploaded}>Uploaded on: 01-01-2024</div>
-                            <div className={styles.bookTags}>Tags: young adult, fantasy</div>
-                        </div>
-                    </div>
-
-                    <div className={styles.book}>
-                        <div className={styles.bookImage}>
-                            <img src="src\pages\booklist\bookcover.svg" alt="book" />
-                        </div>
-                        <div className={styles.bookInfo}>
-                            <div className={styles.bookTitle}>Harry Potter and the Philosopher's Stone</div>
-                            <div className={styles.bookAuthor}>Author: J.K. Rowling</div>
-                            <div className={styles.bookDate}>Release Date: 01-01-1999</div>
-                            <div className={styles.bookUploaded}>Uploaded on: 01-01-2024</div>
-                            <div className={styles.bookTags}>Tags: young adult, fantasy</div>
-                        </div>
-                    </div>
-
+                    ))}
                 </div>
             </div>
         </>

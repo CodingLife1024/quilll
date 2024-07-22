@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet';
-import { useLocation } from 'react-router-dom';
+import { useLocation, Link } from 'react-router-dom';
 import Topbar from '../../components/topbar/main';
 import Sidebar from '../../components/sidebar/main';
 import styles from './style.module.css';
@@ -17,32 +17,40 @@ function Book() {
     const query = useQuery();
     const bookName = query.get('name');
     const [book, setBook] = useState(null);
+    const [author, setAuthor] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
     useEffect(() => {
         const fetchBook = async () => {
             try {
-                setBook(null); // Clear previous book data
-                setLoading(true); // Set loading state to true
+                setBook(null);
+                setLoading(true);
                 const response = await axios.get(`/api/books/search?name=${encodeURIComponent(bookName)}`, {
                     headers: {
                         'Cache-Control': 'no-cache',
                     }
                 });
-                console.log('API response:', response.data); // Debugging log
+                console.log('API response:', response.data);
                 const books = response.data;
-                setBook(Array.isArray(books) ? books[0] : books); // Set the first book if multiple are returned
+                const bookData = Array.isArray(books) ? books[0] : books;
+                setBook(bookData);
+
+                if (bookData && bookData.author_name) {
+                    const authorResponse = await axios.get(`/api/authors?name=${encodeURIComponent(bookData.author_name)}`);
+                    setAuthor(authorResponse.data);
+                }
+
                 setLoading(false);
             } catch (err) {
-                console.error('API error:', err); // Debugging log
+                console.error('API error:', err);
                 setError(err);
                 setLoading(false);
             }
         };
 
         fetchBook();
-    }, [bookName]); // Add bookName as a dependency to re-fetch when it changes
+    }, [bookName]);
 
     if (loading) {
         return <div>Loading...</div>;
@@ -100,11 +108,13 @@ function Book() {
                                 />
                             </div>
                             <div className={styles.authorName}>
-                                {book.author_id}
+                                <Link to={`/authors?id=${encodeURIComponent(book.author_id)}`}>
+                                    {author ? author.id : book.author_id}
+                                </Link>
                             </div>
                         </div>
                         <div className={styles.authorAbout}>
-                            {book.author_bio}
+                            {author ? author.desc : book.author_desc}
                         </div>
                     </div>
                 </div>
