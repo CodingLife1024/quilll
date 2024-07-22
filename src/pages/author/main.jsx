@@ -5,6 +5,13 @@ import Sidebar from '../../components/sidebar/main';
 import styles from './style.module.css';
 import BookList from '../booklist/main';
 
+function useQuery() {
+    return new URLSearchParams(useLocation().search);
+}
+
+const defaultImage = "/bookcover.svg";
+const defaultAuthorImage = "/author.svg";
+
 function Author() {
     return (
         <>
