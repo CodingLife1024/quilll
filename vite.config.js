@@ -6,7 +6,7 @@ export default defineConfig({
     server: {
         proxy: {
             '/api': {
-                target: 'https://quilll-backend-api.vercel.app',
+                target: 'https://quilll-api.vercel.app',
                 changeOrigin: true,
                 rewrite: (path) => path.replace(/^\/api/, '')
             }
