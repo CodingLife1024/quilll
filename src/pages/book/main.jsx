@@ -31,13 +31,14 @@ function Book() {
                         'Cache-Control': 'no-cache',
                     }
                 });
-                console.log('API response:', response.data);
+                console.log('Books API response:', response.data);
                 const books = response.data;
                 const bookData = Array.isArray(books) ? books[0] : books;
                 setBook(bookData);
 
                 if (bookData && bookData.author_name) {
                     const authorResponse = await axios.get(`/api/authors/search?name=${encodeURIComponent(bookData.author_name)}`);
+                    console.log('Author API response:', authorResponse.data);
                     setAuthor(authorResponse.data);
                 }
 
@@ -51,6 +52,23 @@ function Book() {
 
         fetchBook();
     }, [bookName]);
+
+    useEffect(() => {
+        const fetchAuthor = async () => {
+            if (book && book.author_name) {
+                try {
+                    const authorResponse = await axios.get(`/api/authors/search?name=${encodeURIComponent(book.author_name)}`);
+                    console.log('Author API response:', authorResponse.data);
+                    setAuthor(authorResponse.data);
+                } catch (err) {
+                    console.error('Author API error:', err);
+                    setAuthor(null); // Reset author state on error
+                }
+            }
+        };
+
+        fetchAuthor();
+    }, [book]);
 
     if (loading) {
         return <div>Loading...</div>;
@@ -98,23 +116,23 @@ function Book() {
                         </div>
                     </div>
 
-                    <div className={styles.author}>
+                    <div className={styles.authorr}>
                         <div className={styles.nameImg}>
                             <div className={styles.authorImg}>
                                 <img
-                                    src={book.author_image || defaultAuthorImage}
+                                    src={author.author_image || defaultAuthorImage}
                                     onError={(e) => { e.target.onerror = null; e.target.src = defaultAuthorImage; }}
                                     alt={book.author_name}
                                 />
                             </div>
                             <div className={styles.authorName}>
-                                <Link to={`/authors/search?author_name=${encodeURIComponent(book.author_id)}`}>
-                                    {author ? author.author_name : book.author_name}
+                                <Link to={`/authors/search?name=${encodeURIComponent(book.author_name)}`}>
+                                    {author.author_name}
                                 </Link>
                             </div>
                         </div>
                         <div className={styles.authorAbout}>
-                            {author ? author.author_desc : book.author_desc}
+                            {author.author_desc}
                         </div>
                     </div>
                 </div>
