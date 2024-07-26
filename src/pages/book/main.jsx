@@ -39,7 +39,9 @@ function Book() {
                 if (bookData && bookData.author_name) {
                     const authorResponse = await axios.get(`/api/authors/search?name=${encodeURIComponent(bookData.author_name)}`);
                     console.log('Author API response:', authorResponse.data);
-                    setAuthor(authorResponse.data);
+                    const authors = authorResponse.data;
+                    const authorData = Array.isArray(authors) ? authors[0] : authors;
+                    setAuthor(authorData);
                 }
 
                 setLoading(false);
@@ -52,23 +54,6 @@ function Book() {
 
         fetchBook();
     }, [bookName]);
-
-    useEffect(() => {
-        const fetchAuthor = async () => {
-            if (book && book.author_name) {
-                try {
-                    const authorResponse = await axios.get(`/api/authors/search?name=${encodeURIComponent(book.author_name)}`);
-                    console.log('Author API response:', authorResponse.data);
-                    setAuthor(authorResponse.data);
-                } catch (err) {
-                    console.error('Author API error:', err);
-                    setAuthor(null); // Reset author state on error
-                }
-            }
-        };
-
-        fetchAuthor();
-    }, [book]);
 
     if (loading) {
         return <div>Loading...</div>;
@@ -120,19 +105,19 @@ function Book() {
                         <div className={styles.nameImg}>
                             <div className={styles.authorImg}>
                                 <img
-                                    src={author.author_image || defaultAuthorImage}
+                                    src={author?.author_image || defaultAuthorImage}
                                     onError={(e) => { e.target.onerror = null; e.target.src = defaultAuthorImage; }}
-                                    alt={book.author_name}
+                                    alt={author?.author_name}
                                 />
                             </div>
                             <div className={styles.authorName}>
                                 <Link to={`/authors/search?name=${encodeURIComponent(book.author_name)}`}>
-                                    {author.author_name}
+                                    {author?.author_name}
                                 </Link>
                             </div>
                         </div>
                         <div className={styles.authorAbout}>
-                            {author.author_desc}
+                            {author?.author_desc}
                         </div>
                     </div>
                 </div>
