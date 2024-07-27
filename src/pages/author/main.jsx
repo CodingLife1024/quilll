@@ -33,10 +33,11 @@ function Author() {
                         'Cache-Control': 'no-cache',
                     }
                 });
-                const fetchedAuthor = authorResponse.data;
+                console.log("Author API data: ", authorResponse.data);
+                const fetchedAuthor = authorResponse.data[0];
 
                 // Fetch books by author
-                const booksResponse = await axios.get(`/api/books?author_name=${fetchedAuthor.author_name}`, {
+                const booksResponse = await axios.get(`/api/authors/${fetchedAuthor._id}/books`, {
                     headers: {
                         'Cache-Control': 'no-cache',
                     }
@@ -79,7 +80,10 @@ function Author() {
                 <div className={styles.author}>
                     <div className={styles.nameImg}>
                         <div className={styles.authorImg}>
-                            <img src={author.author_image || defaultAuthorImage} alt="Author" />
+                            <img src={author.author_image || defaultAuthorImage}
+                                onError={(e) => { e.target.onerror = null; e.target.src = defaultAuthorImage; }}
+                                alt="Author"
+                            />
                         </div>
                         <div className={styles.authorName}>
                             {author.author_name}
@@ -98,17 +102,19 @@ function Author() {
                     {books.map(book => (
                         <div key={book._id} className={styles.book}>
                             <div className={styles.bookImage}>
-                                <img src={book.book_image || defaultBookImage} alt="Book" />
+                                <img src={book.book_image || defaultBookImage}
+                                    onError={(e) => { e.target.onerror = null; e.target.src = defaultBookImage; }}
+                                    alt={book.book_name}
+                                />
                             </div>
                             <div className={styles.bookInfo}>
                                 <div className={styles.bookTitle}>{book.book_name}</div>
-                                <div className={styles.bookAuthor}>Author: {author.author_name}</div>
+                                <div className={styles.bookAuthor}>Author: {book.author_name}</div>
                                 <div className={styles.bookDate}>Release Date: {new Date(book.release_date).toLocaleDateString()}</div>
                                 <div className={styles.bookUploaded}>Uploaded on: {new Date(book.upload_date).toLocaleDateString()}</div>
                                 {book.tags && (
-                                    <div className={styles.bookTags}>Tags: {book.tags.join(', ')}</div>
+                                    <div className={styles.bookTags}>{book.tags}</div>
                                 )}
-                                <div className={styles.bookDesc}>{book.book_desc}</div>
                             </div>
                         </div>
                     ))}

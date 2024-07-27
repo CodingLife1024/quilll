@@ -66,7 +66,7 @@ function BookList() {
                             </div>
                             <div className={styles.bookInfo}>
                                 <div className={styles.bookTitle}>{book.book_name}</div>
-                                <div className={styles.bookAuthor}>Author: {book.author_id}</div>
+                                <div className={styles.bookAuthor}>Author: {book.author_name}</div>
                                 <div className={styles.bookDate}>Release Date: {new Date(book.release_date).toLocaleDateString()}</div>
                                 <div className={styles.bookUploaded}>Uploaded on: {new Date(book.upload_date).toLocaleDateString()}</div>
                                 <div className={styles.bookTags}>
