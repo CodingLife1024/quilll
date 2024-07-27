@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet';
-import { useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import axios from 'axios';
 import Topbar from '../../components/topbar/main';
 import Sidebar from '../../components/sidebar/main';
@@ -99,8 +99,11 @@ function Author() {
                 </div>
 
                 <div className={styles.booklist}>
-                    {books.map(book => (
-                        <div key={book._id} className={styles.book}>
+                    {books.map((book, index) => (
+                        <Link key={index}
+                            to={`/books/search?name=${encodeURIComponent(book.book_name)}`}
+                            className={styles.book}
+                        >
                             <div className={styles.bookImage}>
                                 <img src={book.book_image || defaultBookImage}
                                     onError={(e) => { e.target.onerror = null; e.target.src = defaultBookImage; }}
@@ -116,7 +119,7 @@ function Author() {
                                     <div className={styles.bookTags}>{book.tags}</div>
                                 )}
                             </div>
-                        </div>
+                        </Link>
                     ))}
                 </div>
             </div>
