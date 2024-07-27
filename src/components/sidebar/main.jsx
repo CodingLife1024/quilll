@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { Helmet } from 'react-helmet';
+import { Link } from 'react-router-dom';
 import styles from "./style.module.css";
 import hamburgerIcon from './hamburger.svg';
 
@@ -18,12 +20,12 @@ const SideBar = () => {
                 <div className={styles.full}>
                     <div className={styles.drop}>
                         <div className={styles.welcome}>Welcome!</div>
-                        <option value="Home">Home</option>
-                        <option value="Popular">Popular</option>
-                        <option value="Recents">Recents</option>
-                        <option value="Popular Authors">Popular Authors</option>
-                        <option value="About Us">About Us</option>
-                        <option value="Contact">Contact</option>
+                        <Link to="/" className={styles.link}>Home</Link>
+                        <Link to="/popular" className={styles.link}>Popular</Link>
+                        <Link to="/recents" className={styles.link}>Recents</Link>
+                        <Link to="/popular-authors" className={styles.link}>Popular Authors</Link>
+                        <Link to="/about-us" className={styles.link}>About Us</Link>
+                        <Link to="/contact" className={styles.link}>Contact</Link>
                     </div>
                 </div>
             </div>
