@@ -1,0 +1,35 @@
+.container {
+    background-image: url("./bg.svg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    text-align: center;
+    font-size: 1.2em;
+    color: #333;
+    width: 100%;
+    height: 100%;
+    padding-top: 10%;
+    padding-bottom: 1%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+
+@media (max-width: 1200px) {
+    .container {
+        padding-top: 150px;
+        padding-bottom: 50px;
+    }
+
+
+}
+
+@media (max-width: 450px) {
+    .container {
+        padding-top: 150px;
+    }
+
+}
