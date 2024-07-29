@@ -22,7 +22,11 @@ function App() {
                 <SideBar />
                 <Routes>
                     <Route path="/" element={<Category />} />
-                    <Route path="/books" element={<BookList />} />
+                    {/* Example usage of BookList with dynamic paths */}
+                    <Route
+                        path="/books"
+                        element={<BookList apiPath="/api/books" toPath="/books/search" />}
+                    />
                     <Route path="/books/search" element={<Book />} />
                     <Route path="/authors/search" element={<Author />} />
                     <Route path="/about" element={<About />} />

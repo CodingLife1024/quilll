@@ -12,7 +12,7 @@ function useQuery() {
 
 const defaultImage = "/bookcover.svg";
 
-function BookList() {
+function BookList({ apiPath, toPath }) {
     const query = useQuery();
     const category = query.get('category');
     const [books, setBooks] = useState([]);
@@ -22,7 +22,7 @@ function BookList() {
     useEffect(() => {
         const fetchBooks = async () => {
             try {
-                const response = await axios.get(`/api/books?category=${category}`);
+                const response = await axios.get(`${apiPath}?category=${category}`);
                 setBooks(response.data);
                 setLoading(false);
             } catch (err) {
@@ -32,7 +32,7 @@ function BookList() {
         };
 
         fetchBooks();
-    }, [category]);
+    }, [apiPath, category]);
 
     if (loading) {
         return <div>Loading...</div>;
@@ -54,7 +54,7 @@ function BookList() {
                     {books.map((book, index) => (
                         <Link
                             key={index}
-                            to={`/books/search?name=${encodeURIComponent(book.book_name)}`}
+                            to={`${toPath}?name=${encodeURIComponent(book.book_name)}`}
                             className={styles.book}
                         >
                             <div className={styles.bookImage}>
