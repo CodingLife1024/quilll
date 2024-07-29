@@ -4,9 +4,6 @@ import Topbar from '../../components/topbar/main';
 import Sidebar from '../../components/sidebar/main';
 import styles from './style.module.css';
 
-const defaultAuthorImage = "/author.svg";
-const defaultBookImage = "/bookcover.svg";
-
 function About() {
     return (
         <>
