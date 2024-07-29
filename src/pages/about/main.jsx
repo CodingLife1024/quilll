@@ -20,15 +20,14 @@ function About() {
                 <div className={styles.descBox}>
                     <div className={styles.desc}>
 
-                        <p>Welcome to our Queer Indian Books Library, a dedicated platform developed by a student from IIT Delhi. Our mission is to curate and provide access to a comprehensive collection of literature that explores and celebrates queer experiences in India.</p>
+                    <p>Welcome to our Queer Indian Books Library, a unique and much-needed platform that aims to bring together and celebrate queer literature in India. Our mission is to provide a space where readers can find books that reflect the diverse and rich experiences of the Indian queer community.</p>
 
-                        <p>This project aims to be an invaluable resource for readers seeking to discover and engage with books that represent the diverse voices and stories within the Indian queer community. Our library includes a wide range of genres, from fiction and poetry to memoirs and academic works, all authored by or about queer individuals in India.</p>
+                    <p>Queer literature in India often struggles to find mainstream visibility, yet it plays a crucial role in offering representation, fostering understanding, and building a sense of community. This library is dedicated to ensuring that these important voices and stories are accessible to everyone, helping to challenge stereotypes and promote inclusivity through the power of literature.</p>
 
-                        <p>Built using React, React Router, and Axios, and styled with modern CSS practices, our application ensures a seamless and user-friendly experience. We have integrated various features to enhance your browsing experience, including search functionality, book and author profiles, and categorized listings.</p>
+                    <p>The Queer Indian Books Library was developed by a passionate student from IIT Delhi. Motivated by a deep commitment to social justice and an avid love for literature, the developer envisioned this platform as a bridge to connect readers with the works of queer authors and stories from India. The library encompasses a wide range of genres, from fiction and poetry to memoirs and academic works, showcasing the vibrant and multifaceted nature of queer narratives.</p>
 
-                        <p>As we continue to grow, we are committed to expanding our collection and fostering an inclusive environment where everyone can find representation and support through literature. Our platform is not only a library but also a celebration of queer Indian voices.</p>
+                    <p>We hope this library not only serves as a valuable resource for readers but also as a celebration of the resilience, creativity, and diversity of the Indian queer community. Thank you for visiting, and we hope you find our collection enriching and inspiring.</p>
 
-                        <p>Thank you for visiting, and we hope you find our library enriching and inspiring.</p>
                     </div>
                 </div>
             </div>
