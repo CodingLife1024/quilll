@@ -22,10 +22,10 @@ function App() {
                 <SideBar />
                 <Routes>
                     <Route path="/" element={<Category />} />
-                    {/* Example usage of BookList with dynamic paths */}
+                    {/* Example usage of BookList with dynamic paths and additional queries */}
                     <Route
                         path="/books"
-                        element={<BookList apiPath="/api/books" toPath="/books/search" />}
+                        element={<BookList apiPath="/api/books" toPath="/books/search" additionalQuery="&sort_by=upload_date" />}
                     />
                     <Route path="/books/search" element={<Book />} />
                     <Route path="/authors/search" element={<Author />} />

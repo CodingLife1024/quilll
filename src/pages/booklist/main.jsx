@@ -12,7 +12,7 @@ function useQuery() {
 
 const defaultImage = "/bookcover.svg";
 
-function BookList({ apiPath, toPath }) {
+function BookList({ apiPath, toPath, additionalQuery = '' }) {
     const query = useQuery();
     const category = query.get('category');
     const [books, setBooks] = useState([]);
@@ -22,7 +22,7 @@ function BookList({ apiPath, toPath }) {
     useEffect(() => {
         const fetchBooks = async () => {
             try {
-                const response = await axios.get(`${apiPath}?category=${category}`);
+                const response = await axios.get(`${apiPath}?category=${category}${additionalQuery}`);
                 setBooks(response.data);
                 setLoading(false);
             } catch (err) {
@@ -32,7 +32,7 @@ function BookList({ apiPath, toPath }) {
         };
 
         fetchBooks();
-    }, [apiPath, category]);
+    }, [apiPath, category, additionalQuery]);
 
     if (loading) {
         return <div>Loading...</div>;
