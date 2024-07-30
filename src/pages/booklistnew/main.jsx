@@ -12,9 +12,7 @@ function useQuery() {
 
 const defaultImage = "/bookcover.svg";
 
-function BookList({ apiPath, toPath, additionalQuery = '' }) {
-    const query = useQuery();
-    const category = query.get('category');
+function BookListNew({ apiPath, toPath }) {
     const [books, setBooks] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
@@ -22,8 +20,12 @@ function BookList({ apiPath, toPath, additionalQuery = '' }) {
     useEffect(() => {
         const fetchBooks = async () => {
             try {
-                const response = await axios.get(`${apiPath}?category=${category}${additionalQuery}`);
-                setBooks(response.data);
+                const response = await axios.get(apiPath);
+                if (Array.isArray(response.data)) {
+                    setBooks(response.data);
+                } else {
+                    setBooks([]);
+                }
                 setLoading(false);
             } catch (err) {
                 setError(err);
@@ -32,7 +34,7 @@ function BookList({ apiPath, toPath, additionalQuery = '' }) {
         };
 
         fetchBooks();
-    }, [apiPath, category, additionalQuery]);
+    }, [apiPath]);
 
     if (loading) {
         return <div>Loading...</div>;
@@ -45,7 +47,7 @@ function BookList({ apiPath, toPath, additionalQuery = '' }) {
     return (
         <>
             <Helmet>
-                <title>{`${category.charAt(0).toUpperCase() + category.slice(1)}`}</title>
+                <title>Books</title>
             </Helmet>
             <Topbar />
             <Sidebar />
@@ -81,4 +83,4 @@ function BookList({ apiPath, toPath, additionalQuery = '' }) {
     );
 }
 
-export default BookList;
+export default BookListNew;
