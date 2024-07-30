@@ -12,7 +12,10 @@ function useQuery() {
 
 const defaultImage = "/bookcover.svg";
 
-function BookListNew({ apiPath, toPath }) {
+function BookListNew() {
+    const location = useLocation();
+    const { apiPath = '/api/books?sort_by=upload_date', toPath = '/books/search' } = location.state || {};
+
     const [books, setBooks] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
