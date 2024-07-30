@@ -14,26 +14,26 @@ const Topbar = () => {
 
     const handleDropdownChange = (event) => {
         const selectedValue = event.target.value;
-        let newApiPath = "/api/books?sort_by=upload_date";
+        let sortParam = "upload_date"; // Default sort parameter
 
         switch (selectedValue) {
             case 'category':
-                newApiPath = "/api/books?sort_by=category";
+                sortParam = "category";
                 break;
             case 'name':
-                newApiPath = "/api/books?sort_by=name";
-                break;
-            case 'upload_date':
-                newApiPath = "/api/books?sort_by=upload_date";
+                sortParam = "name";
                 break;
             case 'release_date':
-                newApiPath = "/api/books?sort_by=release_date";
+                sortParam = "release_date";
+                break;
+            case 'upload_date':
+                sortParam = "upload_date";
                 break;
             default:
                 break;
         }
 
-        navigate("/", { state: { apiPath: newApiPath, toPath: "/books/search" } });
+        navigate(`/${encodeURIComponent(sortParam)}`, { replace: true });
     };
 
     return (

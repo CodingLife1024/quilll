@@ -1,21 +1,14 @@
-import axios from 'axios';
 import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 import { Helmet } from 'react-helmet';
 import { Link, useLocation } from 'react-router-dom';
 import Sidebar from '../../components/sidebar/main';
 import Topbar from '../../components/topbar/main';
 import styles from './style.module.css';
 
-function useQuery() {
-    return new URLSearchParams(useLocation().search);
-}
-
 const defaultImage = "/bookcover.svg";
 
-function BookListNew() {
-    const location = useLocation();
-    const { apiPath = '/api/books?sort_by=upload_date', toPath = '/books/search' } = location.state || {};
-
+function BookListNew({ apiPath, toPath }) {
     const [books, setBooks] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
