@@ -29,6 +29,7 @@ function App() {
                     />
                     <Route path="/books/search" element={<Book />} />
                     <Route path="/authors/search" element={<Author />} />
+                    <Route path="/search" element={<BookListNew apiPath="/api/books/search" toPath="/books/search" />} />
                     <Route path="/about" element={<About />} />
                     <Route path="/contact" element={<Contact />} />
                     <Route path="/recents" element={<BookListNew apiPath="/api/books?sort_by=upload_date" toPath="/books/search"/>} />

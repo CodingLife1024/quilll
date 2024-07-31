@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import styles from "./style.module.css";
 import searchIcon from './search.svg';
 import SideBar from '../sidebar/main';
 
 const Topbar = () => {
     const [sidebarOpen, setSidebarOpen] = useState(false);
+    const [searchValue, setSearchValue] = useState('');
     const navigate = useNavigate();
+    const location = useLocation();
 
     const toggleSidebar = () => {
         setSidebarOpen(!sidebarOpen);
@@ -36,6 +38,16 @@ const Topbar = () => {
         navigate(`/${encodeURIComponent(sortParam)}`, { replace: true });
     };
 
+    const handleSearch = (event) => {
+        if (event.key === 'Enter' && searchValue.trim() !== '') {
+            navigate(`/search?name=${encodeURIComponent(searchValue)}`);
+        }
+    };
+
+    const handleSearchInputChange = (event) => {
+        setSearchValue(event.target.value);
+    };
+
     return (
         <div className={styles.container}>
             <div className={styles.top}>
@@ -55,7 +67,14 @@ const Topbar = () => {
                     </div>
                     <div className={styles.search}>
                         <img src={searchIcon} alt="Search" />
-                        <input className={styles.searchbar} type="text" placeholder="Search..." />
+                        <input
+                            className={styles.searchbar}
+                            type="text"
+                            placeholder="Search..."
+                            value={searchValue}
+                            onChange={handleSearchInputChange}
+                            onKeyPress={handleSearch}
+                        />
                     </div>
                 </div>
             </div>

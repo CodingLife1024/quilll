@@ -16,7 +16,15 @@ function BookListNew({ apiPath, toPath }) {
     useEffect(() => {
         const fetchBooks = async () => {
             try {
-                const response = await axios.get(apiPath);
+                const searchParams = new URLSearchParams(location.search);
+                const searchName = searchParams.get('name');
+
+                let url = apiPath;
+                if (searchName) {
+                    url += `?name=${encodeURIComponent(searchName)}`;
+                }
+
+                const response = await axios.get(url);
                 if (Array.isArray(response.data)) {
                     setBooks(response.data);
                 } else {
@@ -30,7 +38,7 @@ function BookListNew({ apiPath, toPath }) {
         };
 
         fetchBooks();
-    }, [apiPath]);
+    }, [apiPath, location.search]);
 
     if (loading) {
         return <div>Loading...</div>;
