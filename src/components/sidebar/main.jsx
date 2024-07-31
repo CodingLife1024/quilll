@@ -21,9 +21,9 @@ const SideBar = () => {
                     <div className={styles.drop}>
                         <div className={styles.welcome}>Welcome!</div>
                         <Link to="/" className={styles.link}>Home</Link>
-                        <Link to="/popular" className={styles.link}>Popular</Link>
+                        {/* <Link to="/popular" className={styles.link}>Popular</Link> */}
                         <Link to="/recents" className={styles.link}>Recents</Link>
-                        <Link to="/popular-authors" className={styles.link}>Popular Authors</Link>
+                        {/* <Link to="/popular-authors" className={styles.link}>Popular Authors</Link> */}
                         <Link to="/about" className={styles.link}>About Us</Link>
                         <Link to="/contact" className={styles.link}>Contact</Link>
                     </div>
