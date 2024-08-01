@@ -33,6 +33,7 @@ function Category() {
                 }
             }
             setCategoryCounts(counts);
+            console.log("Category Counts:", counts); // Log category counts here
         };
 
         fetchCategoryCounts();
