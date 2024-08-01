@@ -23,25 +23,25 @@ function App() {
                 <SideBar />
                 <Routes>
                     <Route path="/" element={<Category />} />
-                    
+
                     <Route
                         path="/books"
-                        element={<BookList apiPath="/api/books" toPath="/books/search" additionalQuery="&sort_by=upload_date" />}
+                        element={<BookList apiPath="/books" toPath="/books/search" additionalQuery="&sort_by=upload_date" />}
                     />
                     <Route path="/books/search" element={<Book />} />
 
                     <Route path="/authors/search" element={<Author />} />
 
-                    <Route path="/search" element={<BookListNew apiPath="/api/books/search" toPath="/books/search" />} />
+                    <Route path="/search" element={<BookListNew apiPath="/books/search" toPath="/books/search" />} />
                     <Route path="/about" element={<About />} />
 
                     <Route path="/contact" element={<Contact />} />
 
-                    <Route path="/recents" element={<BookListNew apiPath="/api/books?sort_by=upload_date" toPath="/books/search"/>} />
+                    <Route path="/recents" element={<BookListNew apiPath="/books?sort_by=upload_date" toPath="/books/search"/>} />
 
-                    <Route path="/release_date" element={<BookListNew apiPath="/api/books?sort_by=release_date" toPath="/books/search"/>} />
+                    <Route path="/release_date" element={<BookListNew apiPath="/books?sort_by=release_date" toPath="/books/search"/>} />
 
-                    <Route path="/upload_date" element={<BookListNew apiPath="/api/books?sort_by=upload_date" toPath="/books/search"/>} />
+                    <Route path="/upload_date" element={<BookListNew apiPath="/books?sort_by=upload_date" toPath="/books/search"/>} />
 
                     <Route path="/name" element={<BookListNew apiPath="/api/books" toPath="/books/search"/>} />
 
