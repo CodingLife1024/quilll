@@ -32,18 +32,18 @@ function App() {
 
                     <Route path="/authors/search" element={<Author />} />
 
-                    <Route path="/search" element={<BookListNew apiPath="api/books/search" toPath="/books/search" />} />
+                    <Route path="/search" element={<BookListNew apiPath="books/search" toPath="/books/search" />} />
                     <Route path="/about" element={<About />} />
 
                     <Route path="/contact" element={<Contact />} />
 
-                    <Route path="/recents" element={<BookListNew apiPath="/api/books?sort_by=upload_date" toPath="/books/search"/>} />
+                    <Route path="/recents" element={<BookListNew apiPath="books?sort_by=upload_date" toPath="/books/search"/>} />
 
-                    <Route path="/release_date" element={<BookListNew apiPath="/api/books?sort_by=release_date" toPath="/books/search"/>} />
+                    <Route path="/release_date" element={<BookListNew apiPath="books?sort_by=release_date" toPath="/books/search"/>} />
 
-                    <Route path="/upload_date" element={<BookListNew apiPath="/api/books?sort_by=upload_date" toPath="/books/search"/>} />
+                    <Route path="/upload_date" element={<BookListNew apiPath="books?sort_by=upload_date" toPath="/books/search"/>} />
 
-                    <Route path="/name" element={<BookListNew apiPath="/api/books" toPath="/books/search"/>} />
+                    <Route path="/name" element={<BookListNew apiPath="books" toPath="/books/search"/>} />
 
                     <Route path="/category" element={<Category />} />
                 </Routes>
