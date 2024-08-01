@@ -111,7 +111,7 @@ function Book() {
                                 />
                             </div>
                             <div className={styles.authorName}>
-                                <Link to={`${import.meta.env.VITE_API_BASE_URL}/authors/search?name=${encodeURIComponent(book.author_name)}`}>
+                                <Link to={`/authors/search?name=${encodeURIComponent(book.author_name)}`}>
                                     {author?.author_name}
                                 </Link>
                             </div>
