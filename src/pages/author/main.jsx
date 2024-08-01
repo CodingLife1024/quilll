@@ -28,7 +28,7 @@ function Author() {
                 setError(null);
 
                 // Fetch author details
-                const authorResponse = await axios.get(`/api/authors/search?name=${encodeURIComponent(authorName)}`, {
+                const authorResponse = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/authors/search?name=${encodeURIComponent(authorName)}`, {
                     headers: {
                         'Cache-Control': 'no-cache',
                     }
@@ -37,7 +37,7 @@ function Author() {
                 const fetchedAuthor = authorResponse.data[0];
 
                 // Fetch books by author
-                const booksResponse = await axios.get(`/api/authors/${fetchedAuthor._id}/books`, {
+                const booksResponse = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/authors/${fetchedAuthor._id}/books`, {
                     headers: {
                         'Cache-Control': 'no-cache',
                     }
