@@ -55,7 +55,7 @@ function Category() {
                         >
                             <div className={styles.categoryImage}>
                                 <img
-                                    src={`src/pages/categories/${category.image}`}
+                                    src={`/categories/${category.image}`}
                                     alt={category.name}
                                 />
                             </div>
