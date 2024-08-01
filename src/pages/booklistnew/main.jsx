@@ -20,7 +20,7 @@ function BookListNew({ apiPath, toPath }) {
                 const searchParams = new URLSearchParams(location.search);
                 const searchName = searchParams.get('name');
 
-                let url = apiPath;
+                let url = `${import.meta.env.VITE_API_BASE_URL}/${apiPath}`;
                 if (searchName) {
                     url += `?name=${encodeURIComponent(searchName)}`;
                 }
