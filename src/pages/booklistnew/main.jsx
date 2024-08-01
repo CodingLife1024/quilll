@@ -12,6 +12,7 @@ function BookListNew({ apiPath, toPath }) {
     const [books, setBooks] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const location = useLocation();
 
     useEffect(() => {
         const fetchBooks = async () => {
