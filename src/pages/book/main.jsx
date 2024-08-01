@@ -26,7 +26,7 @@ function Book() {
             try {
                 setBook(null);
                 setLoading(true);
-                const response = await axios.get(`/api/books/search?name=${encodeURIComponent(bookName)}`, {
+                const response = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/books/search?name=${encodeURIComponent(bookName)}`, {
                     headers: {
                         'Cache-Control': 'no-cache',
                     }
@@ -37,7 +37,7 @@ function Book() {
                 setBook(bookData);
 
                 if (bookData && bookData.author_name) {
-                    const authorResponse = await axios.get(`/api/authors/search?name=${encodeURIComponent(bookData.author_name)}`);
+                    const authorResponse = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/authors/search?name=${encodeURIComponent(bookData.author_name)}`);
                     console.log('Author API response:', authorResponse.data);
                     const authors = authorResponse.data;
                     const authorData = Array.isArray(authors) ? authors[0] : authors;
@@ -111,7 +111,7 @@ function Book() {
                                 />
                             </div>
                             <div className={styles.authorName}>
-                                <Link to={`/authors/search?name=${encodeURIComponent(book.author_name)}`}>
+                                <Link to={`${import.meta.env.VITE_API_BASE_URL}/authors/search?name=${encodeURIComponent(book.author_name)}`}>
                                     {author?.author_name}
                                 </Link>
                             </div>
