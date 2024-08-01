@@ -26,7 +26,7 @@ function App() {
 
                     <Route
                         path="/books"
-                        element={<BookList apiPath="api/books" toPath="/books/search" additionalQuery="&sort_by=upload_date" />}
+                        element={<BookList apiPath="books" toPath="/books/search" additionalQuery="&sort_by=upload_date" />}
                     />
                     <Route path="/books/search" element={<Book />} />
 
