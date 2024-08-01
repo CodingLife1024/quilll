@@ -27,13 +27,14 @@ function Category() {
             for (const category of categories) {
                 try {
                     const response = await axios.get(`/api/books?category=${category.category}`);
+                    console.log(`Response for category ${category.category}:`, response.data); // Log API response
                     counts[category.category] = response.data.length;
                 } catch (error) {
                     console.error(`Error fetching data for category ${category.category}:`, error);
                 }
             }
             setCategoryCounts(counts);
-            console.log("Category Counts:", counts); // Log category counts here
+            console.log("Category Counts:", counts); // Log category counts
         };
 
         fetchCategoryCounts();
