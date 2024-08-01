@@ -26,13 +26,13 @@ function App() {
 
                     <Route
                         path="/books"
-                        element={<BookList apiPath="/api/books" toPath="/books/search" additionalQuery="&sort_by=upload_date" />}
+                        element={<BookList apiPath="api/books" toPath="/books/search" additionalQuery="&sort_by=upload_date" />}
                     />
                     <Route path="/books/search" element={<Book />} />
 
                     <Route path="/authors/search" element={<Author />} />
 
-                    <Route path="/search" element={<BookListNew apiPath="/api/books/search" toPath="/books/search" />} />
+                    <Route path="/search" element={<BookListNew apiPath="api/books/search" toPath="/books/search" />} />
                     <Route path="/about" element={<About />} />
 
                     <Route path="/contact" element={<Contact />} />
