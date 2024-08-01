@@ -22,7 +22,7 @@ function BookList({ apiPath, toPath, additionalQuery = '' }) {
     useEffect(() => {
         const fetchBooks = async () => {
             try {
-                const response = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/${apiPath}?category=${category}${additionalQuery}`);
+                const response = await axios.get(`${apiPath}?category=${category}${additionalQuery}`);
                 console.log("Response Data:", response.data); // Debug log
                 setBooks(response.data);
                 setLoading(false);
