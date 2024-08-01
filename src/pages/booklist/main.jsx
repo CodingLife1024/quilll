@@ -23,9 +23,11 @@ function BookList({ apiPath, toPath, additionalQuery = '' }) {
         const fetchBooks = async () => {
             try {
                 const response = await axios.get(`${apiPath}?category=${category}${additionalQuery}`);
+                console.log("Response Data:", response.data); // Debug log
                 setBooks(response.data);
                 setLoading(false);
             } catch (err) {
+                console.error("Error fetching books:", err); // Debug log
                 setError(err);
                 setLoading(false);
             }
