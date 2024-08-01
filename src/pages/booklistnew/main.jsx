@@ -61,7 +61,7 @@ function BookListNew({ apiPath, toPath }) {
                     {books.map((book, index) => (
                         <Link
                             key={index}
-                            to={`${import.meta.env.VITE_API_BASE_URL}/${toPath}?name=${encodeURIComponent(book.book_name)}`}
+                            to={`/${toPath}?name=${encodeURIComponent(book.book_name)}`}
                             className={styles.book}
                         >
                             <div className={styles.bookImage}>
