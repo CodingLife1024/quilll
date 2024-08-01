@@ -26,7 +26,7 @@ function Category() {
             const counts = {};
             for (const category of categories) {
                 try {
-                    const response = await axios.get(`/api/books?category=${category.category}`);
+                    const response = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/books?category=${category.category}`);
                     console.log(`Response for category ${category.category}:`, response.data); // Log API response
                     counts[category.category] = response.data.length;
                 } catch (error) {
