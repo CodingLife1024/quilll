@@ -11,5 +11,17 @@ export default defineConfig({
                 rewrite: (path) => path.replace(/^\/api/, '')
             }
         }
+    },
+    build: {
+        rollupOptions: {
+            output: {
+                manualChunks: {
+                    react: ['react'],
+                    'react-dom': ['react-dom'],
+                    'react-router-dom': ['react-router-dom'],
+                    axios: ['axios']
+                }
+            }
+        }
     }
 });
